@@ -1,0 +1,35 @@
+<?xml version="1.0" ?>
+<robot name="ur5e_robot">  <!-- 建议改为不同的名称，如 ur5e_robot2，以避免潜在冲突 -->
+    <group name="robot2_manipulator">  <!-- 更改组名以反映它是第二个机械臂 -->
+        <chain base_link="robot2_base_link" tip_link="robot2_tool0" />
+    </group>
+    <group_state name="home" group="robot2_manipulator">
+        <joint name="robot2_elbow_joint" value="0" />
+        <joint name="robot2_shoulder_lift_joint" value="0" />
+        <joint name="robot2_shoulder_pan_joint" value="0" />
+        <joint name="robot2_wrist_1_joint" value="0" />
+        <joint name="robot2_wrist_2_joint" value="0" />
+        <joint name="robot2_wrist_3_joint" value="0" />
+    </group_state>
+    <group_state name="up" group="robot2_manipulator">
+        <joint name="robot2_elbow_joint" value="0" />
+        <joint name="robot2_shoulder_lift_joint" value="-1.5707" />
+        <joint name="robot2_shoulder_pan_joint" value="0" />
+        <joint name="robot2_wrist_1_joint" value="-1.5707" />
+        <joint name="robot2_wrist_2_joint" value="0" />
+        <joint name="robot2_wrist_3_joint" value="0" />
+    </group_state>
+
+    <virtual_joint name="robot2_fixed_base" type="fixed" parent_frame="world" child_link="robot2_base_link" />
+    <disable_collisions link1="robot2_base_link_inertia" link2="robot2_shoulder_link" reason="Adjacent" />
+    <disable_collisions link1="robot2_base_link_inertia" link2="robot2_upper_arm_link" reason="Never" />
+    <disable_collisions link1="robot2_base_link_inertia" link2="robot2_wrist_1_link" reason="Never" />
+    <disable_collisions link1="robot2_forearm_link" link2="robot2_upper_arm_link" reason="Adjacent" />
+    <disable_collisions link1="robot2_forearm_link" link2="robot2_wrist_1_link" reason="Adjacent" />
+    <disable_collisions link1="robot2_shoulder_link" link2="robot2_upper_arm_link" reason="Adjacent" />
+    <disable_collisions link1="robot2_shoulder_link" link2="robot2_wrist_1_link" reason="Never" />
+    <disable_collisions link1="robot2_shoulder_link" link2="robot2_wrist_2_link" reason="Never" />
+    <disable_collisions link1="robot2_wrist_1_link" link2="robot2_wrist_2_link" reason="Adjacent" />
+    <disable_collisions link1="robot2_wrist_1_link" link2="robot2_wrist_3_link" reason="Never" />
+    <disable_collisions link1="robot2_wrist_2_link" link2="robot2_wrist_3_link" reason="Adjacent" />
+</robot>
